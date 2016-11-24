@@ -52,7 +52,9 @@ else ifeq ($(GOOS)_$(GOARCH), windows_386)
 	SOURCES += $(REPO)/assets/packaging/addto-startup.vbs
 	SOURCES += $(REPO)/assets/packaging/get-latest-goproxy.cmd
 else ifeq ($(GOOS)_$(GOARCH), linux_arm)
-	GOARM ?= 7
+	GOARM ?= 6
+	CGO_ENABLED = 1
+	CC = arm-linux-gnueabihf-gcc
 	SOURCES += $(REPO)/assets/packaging/goproxy.sh
 	SOURCES += $(REPO)/assets/packaging/get-latest-goproxy.sh
 else ifeq ($(GOOS), darwin)
